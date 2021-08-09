@@ -8,7 +8,7 @@ arr_file = Dir.entries('.')
 unless arr_file.include? file_default
   f = File.new(file_default, 'w')
   LOREM.each { |line| f.write(line) }
-  f.close 
+  f.close
 end
 
 arr = File.readlines(file_default, chomp: true)
