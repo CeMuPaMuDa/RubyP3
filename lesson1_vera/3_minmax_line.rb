@@ -1,0 +1,16 @@
+# enter = ARGV.first
+require_relative 'lib/lorem'
+
+file_default = ARGV.first || 'file.txt'
+arr_file = Dir.entries('.')
+
+unless arr_file.include? file_default
+  f = File.new(file_default, 'w')
+  LOREM.each { |line| f.write(line) }
+  f.close 
+end
+
+arr = File.readlines(file_default, chomp: true)
+minmax = arr.minmax_by(&:size)
+puts "Самая короткая строка: #{minmax.first} (#{minmax.first.size})"
+puts "Самая длинная строка: #{minmax.last} (#{minmax.last.size})"
