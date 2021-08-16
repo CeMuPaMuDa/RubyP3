@@ -1,50 +1,69 @@
-# Создайте класс Unit, моделирующий коллектив из семи человек:
-#  руководитель, два бэкенд-разработчика, два фронтенд-разработчика, тестировщик и дизайнер.
-#   Для моделирования каждого сотрудника создайте вложенный класс Unit::Employee.
-#    Объект класса Unit должен позволять добавлять, удалять, редактировать сотрудников
-#     и выводить их полный список в алфавитном порядке. Кроме того, создайте метод
-#      или набор методов, позволяющих фильтровать команду по ролям — например,
-#       запрашивать список тестировщиков или бэкенд-разработчиков.
+# frozen_string_literal: true
 
 class Unit
-
-  def initialize(nsp, role)
-    @name, @surname, @patronymic = nsp.split(' ')
-    @role = role
-  end
+  @@group = []
 
   def add(ncp, role)
-    @worker = Employee.new(ncp, role)
+    @@group << Employee.new(ncp, role)
   end
 
-  def edit(value, new_value)
-    case value
-    when 'role' then @worker.role = new_value
-    end
+  def edit(mtd, surname, new_value)
+    mtd +='='
+    user = @@group.find{|x| x.surname == surname}
+    user.send(mtd, new_value)
+    
+
   end
 
-  def delete
+  def delete (surname)
+    @@group.delete_if{|x| x.surname == surname}
   end
 
-  def all
-    @worker
+  def all(sort_param = 'surname')
+    @@group.sort_by { |x| x.send(sort_param) }
+           .each { |x| puts "#{x.surname} #{x.name} #{x.patronymic}: #{x.role}" }
   end
 
   def filter(param)
-  end   
+    puts "#{param} (#{@@group.select { |el| el.role == param }.count}):"
+    @@group.select { |el| el.role == param }
+           .each do |el|
+      puts "#{el.surname} #{el.name} #{el.patronymic}"
+    end
+  end
 
   class Employee
-    attr_accessor :name, :surname, :patrinymic, :role
+    attr_accessor :name, :surname, :patronymic, :role
 
     def initialize(nsp, role)
-      @name, @surname, @patronymic = nsp.split(' ')
+      @surname, @name, @patronymic = nsp.split(' ')
       @role = role
     end
-
   end
 end
 
-fst = Unit.new
-p fst.add('sdfvsd sdfs sdf', 'etgeg')
-p fst.edit('role', 'Backend')
-p fst.all
+COLLECTIVE = [
+  ['Иванов Иван Иванович', 'Team Leader'],
+  ['Петров Петр Петрович', 'Backend Developer'],
+  ['Владимиров Владимир Владимирович', 'Backend Developer'],
+  ['Олегов Олег Олегович', 'Frontend Developer'],
+  ['Аннушкина Анна Андреевна', 'Frontend Developer'],
+  ['Татианко Татьяна Тимуровна', 'QA Engeneer'],
+  ['Янейко Янина Ярославовна', 'Designer']
+].freeze
+
+office = Unit.new
+COLLECTIVE.each do |el|
+  office.add(el[0], el[1])
+end
+office.all('role')
+puts '**********************'
+office.filter('Frontend Developer')
+puts '**********************'
+office.edit('role', 'Аннушкина', 'Designer')
+office.all
+puts '**********************'
+office.delete('Татианко')
+puts '**********************'
+office.all
+puts '**********************'
