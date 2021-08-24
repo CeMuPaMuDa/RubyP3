@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'date'
 require_relative 'lib/seo_news_about'
 
@@ -9,6 +10,7 @@ news.seo.seo_title = 'Новости дня'
 news.seo.description = 'События в Украине и мире'
 news.seo.keywords = %w[новости события сенсации]
 p news
+
 about = About.new(Seo.new)
 about.phones = '+38 (063) 063-63-63'
 about.address = 'Украина, 18005, Черкассы, ул. Ю. Ильенка, 27'

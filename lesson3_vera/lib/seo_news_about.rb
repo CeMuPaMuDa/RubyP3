@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'page_photo'
 
 class Seo
@@ -6,7 +7,7 @@ class Seo
 end
 
 class News < Page
-    def initialize(seo)
+  def initialize(seo)
     @seo = seo
   end
   attr_accessor :date, :seo
