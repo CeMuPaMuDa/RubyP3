@@ -9,9 +9,10 @@ class Array
     i = 0
     loop do
       break unless block_given?
+
       each(&block) unless num.instance_of?(Integer) && num <= 0
       i += 1
-      break if i >= num.to_i && num != nil
+      break if i >= num.to_i && !num.nil?
     end
   end
 end
