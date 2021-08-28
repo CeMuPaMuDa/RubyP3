@@ -1,6 +1,6 @@
 COUNTRIES = {
   austria: 8_857_960,
-  albania: 2_878_549, 
+  albania: 2_878_549,
   andorra: 74_794,
   belarus: 9_477_100,
   belgium: 11_449_656,
@@ -14,7 +14,7 @@ COUNTRIES = {
   denmark: 5_837_213,
   ireland: 4_921_500,
   iceland: 355_620,
-  spain: 46_733_038	,
+  spain: 46_733_038,
   italy: 60_390_560,
   latvia: 1_921_300,
   lithuania: 2_794_090,
@@ -23,7 +23,7 @@ COUNTRIES = {
   malta: 514_564,
   moldavia: 2_681_735,
   monaco: 38_300,
-  netherlands: 17_417_600	,
+  netherlands: 17_417_600,
   norway: 5_323_933,
   poland: 38_433_600,
   portugal: 10_276_617,
@@ -41,8 +41,8 @@ COUNTRIES = {
   montenegro: 622_359,
   czech: 10_627_794,
   switzerland: 8_526_932,
-  sweden: 10_319_601	,
-  estonia: 1_328_976  
+  sweden: 10_319_601,
+  estonia: 1_328_976
 }.freeze
 
 puts COUNTRIES
